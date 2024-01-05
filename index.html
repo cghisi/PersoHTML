@@ -1,0 +1,155 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body>
+    <div class="banner">
+        <div class="left_part">
+            <div>
+                <b>New Feature Alert!</b>
+                <p>Swaps are now available on your favorite websites</p>
+                <button>Swap Now</button>
+            </div>
+        </div>
+        <div class="separator">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="right_part">
+            <div class="items color1">
+                <span>Spend $40</span>
+                <span class="giant">get $10</span>
+                <span>Bonus CT Money</span>
+            </div>
+            <div class="items color2">
+                <span class="giant">50X</span>
+                <span>on cookware</span>
+            </div>
+            <div class="items color3">
+                <span class="giant">50X</span>
+                <span>on Sockets and Wrenches</span>
+            </div>
+        </div>
+    </div>
+</body>
+<style>
+    body {
+        font-family: 'Open Sans', 'Helvetica Neue'
+    }
+
+    .banner {
+        display: flex;
+        width: 100%;
+        border: 1px solid black;
+        height: 150px;
+        color: #fff;
+        font-size: 18px;
+    }
+
+    .left_part {
+        width: 50%;
+        height: 100%;
+        justify-content: center;
+        flex-direction: column;
+        display: flex;
+        color: #000;
+
+    }
+
+    .left_part div {
+        padding: 24px;
+    }
+
+    .left_part b {
+        font-size: 25px;
+    }
+
+    .left_part p {}
+
+    .left_part button {
+        width: 200px;
+        padding: 10px;
+        color: #fff;
+        background-color: #345358;
+        border: none;
+    }
+
+    .separator {
+        display: flex;
+        background-color: #EC1C25;
+        height: 100%;
+    }
+
+    .separator span {
+        width: 5px;
+    }
+
+    .separator span:nth-child(2) {
+        background-color: #77DFD3;
+    }
+
+    .separator span:nth-child(3) {
+        background-color: #830B2D;
+    }
+
+    .right_part {
+        display: flex;
+        flex-grow: 1;
+    }
+
+    .right_part .items {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .giant {
+        font-size: 48px;
+        font-weight: bold;
+    }
+
+    .color1 {
+        background-color: #EC1C25;
+    }
+
+    .color2 {
+        background-color: #77DFD3;
+    }
+
+    .color3 {
+        background-color: #830B2D;
+    }
+
+    @media (max-width: 767px) {
+        .color2 {
+            display: none !important;
+        }
+
+        .color3 {
+            display: none !important;
+            ;
+        }
+
+        .banner {
+            font-size: 14px;
+        }
+
+        .left_part button {
+            width: 140px;
+        }
+
+        .left_part b {
+            font-size: 20px;
+        }
+
+        .left_part div {
+            padding: 10px;
+        }
+
+    }
+</style>
+
+</html>
