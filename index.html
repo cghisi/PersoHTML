@@ -20,9 +20,9 @@
     <script>
         braze.initialize('5a8b35cd-bde2-41c9-be8c-fc2a9534a749', {
             baseUrl: "sdk.iad-05.braze.com",
-            enableLogging: true,
+            enableLogging: true, // Only for debug mode
             allowUserSuppliedJavascript: true,
-            sessionTimeoutInSeconds: 60 // 1 min
+            sessionTimeoutInSeconds: 60 // 1 min - Only for debug mode
         });
 
         const currentUserId = braze.getUser().userID; // First get the current braze ID
