@@ -22,6 +22,7 @@
             baseUrl: "sdk.iad-05.braze.com",
             enableLogging: true,
             allowUserSuppliedJavascript: true,
+            sessionTimeoutInSeconds: 60 // 1 min
         });
 
         const currentUserId = braze.getUser().userID; // First get the current braze ID
