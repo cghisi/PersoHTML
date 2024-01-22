@@ -26,9 +26,9 @@
 
         const currentUserId = braze.getUser().userID; // First get the current braze ID
 
-        if (currentUserId !== 'Christophe ghisi') {
+        if (currentUserId !== '31556516') {
             // set logged in user Loyaty ID as braze Id
-            braze.changeUser('Christophe ghisi')
+            braze.changeUser('31556516')
         }
 
         braze.subscribeToInAppMessage(function (inAppMessage) {
