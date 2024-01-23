@@ -21,13 +21,12 @@
             baseUrl: "sdk.iad-05.braze.com",
             enableLogging: true,
             allowUserSuppliedJavascript: true,
+            minimumIntervalBetweenTriggerActionsInSeconds: 10,
             sessionTimeoutInSeconds: 60 // 1 min - Only for debug mode
         });
 
         // Suscribe to in-app message and log them to the console 
         braze.subscribeToInAppMessage(function (inAppMessage) {
-            
-            // not sure about the usage of this component (AB testing ???)
             if (inAppMessage.isControl) { // v4.5.0+, otherwise use  `inAppMessage instanceof braze.ControlMessage`
                 return braze.showInAppMessage(inAppMessage);
             }
