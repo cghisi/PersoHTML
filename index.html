@@ -4,9 +4,7 @@
 <head>
     <title>Braze Integration</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script type="text/javascript">
         +function (a, p, P, b, y) {
@@ -18,35 +16,53 @@
 
 
     <script>
+        // Initialize Braze
         braze.initialize('5a8b35cd-bde2-41c9-be8c-fc2a9534a749', {
             baseUrl: "sdk.iad-05.braze.com",
-            enableLogging: true, // Only for debug mode
+            enableLogging: true,
             allowUserSuppliedJavascript: true,
             sessionTimeoutInSeconds: 60 // 1 min - Only for debug mode
         });
 
-        const currentUserId = braze.getUser().userID; // First get the current braze ID
-
-        
-        if (currentUserId !== '31556516') {
-            braze.changeUser('31556516');
-        }
-
         // Suscribe to in-app message and log them to the console 
         braze.subscribeToInAppMessage(function (inAppMessage) {
-            console.log("in app message activated: ", inAppMessage);
+            
+            // not sure about the usage of this component (AB testing ???)
+            if (inAppMessage.isControl) { // v4.5.0+, otherwise use  `inAppMessage instanceof braze.ControlMessage`
+                return braze.showInAppMessage(inAppMessage);
+            }
+
+            console.log("in app message activated :", inAppMessage);
             braze.showInAppMessage(inAppMessage);
         });
+
+        // Get the current braze ID
+        const currentUserId = braze.getUser().userID;
+        //
+        if (currentUserId !== '31556516') {
+            braze.changeUser('31556516')
+        }
 
         braze.openSession();     
     </script>
 </head>
 
 <style>
-.content{
-    margin: auto;
-    width: 1200px;
-}
+    .content {
+        margin: auto;
+        width: 1200px;
+    }
+
+    .content h1 {
+        text-align: center;
+    }
+
+    .block_list {
+        display: flex;
+        gap: 5px;
+        text-align: center;
+        justify-content: space-between;
+    }
 </style>
 
 <body>
@@ -54,13 +70,48 @@
         <h1>Welcome to a DEV environment connected to Braze</h1>
         <p>Campaign is set to display a popup on session load (20sec delay)</p>
         <ul>
-            <li>A popup should display after a 20 seconds delay</li>
+            <li>A popup should display after a 20 seconds</li>
             <li>User is set to be reeligible for the IAM after 1 min</li>
             <li>allowUserSuppliedJavascript is activated to manage HTML based in app message</li>
             <li>Braze logs are enabled</li>
-            <li>session length is shortened for test purpose</li>
+            <li>There is a 30sec delay between custon events firing IAM</li>
         </ul>
+        <div class="block_list">
+            <div>
+                <img src="https://placehold.co/300" alt="" />
+                <p>Tile 1 click - Display a slide out In App Message</p>
+                <button class="btn" id="tile_click" data-tile="1">Activate</button>
+            </div>
+            <div>
+                <img src="https://placehold.co/300" alt="" />
+                <p>Tile 2 click - Display a slide an HTML App Message</p>
+                <button class="btn" id="tile_click" data-tile="2">Activate</button>
+            </div>
+            <div>
+                <img src="https://placehold.co/300" alt="" />
+                <p>Tile 3 click - Display a slide an HTML App Message - Same version from page load</p>
+                <button class="btn" id="tile_click" data-tile="3">Activate</button>
+            </div>
+            <div>
+                <img src="https://placehold.co/300" alt="" />
+                <p>Tile 4 click - Display a slide default Braze survey</p>
+                <button class="btn" id="tile_click" data-tile="4">Activate</button>
+            </div>
+        </div>
     </div>
+
+    <script>
+        const buttons = document.querySelectorAll('#tile_click');
+        buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                //create a custom event when user clicks on the buttons + passing value
+                braze.logCustomEvent("tile_click", {
+                    id: button.dataset.tile,
+                    date: new Date().toLocaleDateString("en-CA")
+                })
+            });
+        });
+    </script>
 </body>
 
 </html>
