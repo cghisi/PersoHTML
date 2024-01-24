@@ -25,15 +25,17 @@
             sessionTimeoutInSeconds: 60 // 1 min - Only for debug mode
         });
 
+        braze.automaticallyShowInAppMessages();
+
         // Suscribe to in-app message and log them to the console 
-        braze.subscribeToInAppMessage(function (inAppMessage) {
+        /*braze.subscribeToInAppMessage(function (inAppMessage) {
             if (inAppMessage.isControl) { // v4.5.0+, otherwise use  `inAppMessage instanceof braze.ControlMessage`
                 return braze.showInAppMessage(inAppMessage);
             }
 
             console.log("in app message activated :", inAppMessage);
             braze.showInAppMessage(inAppMessage);
-        });
+        });*/
 
         // Get the current braze ID
         const currentUserId = braze.getUser().userID;
