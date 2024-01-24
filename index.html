@@ -20,9 +20,9 @@
         braze.initialize('5a8b35cd-bde2-41c9-be8c-fc2a9534a749', {
             baseUrl: "sdk.iad-05.braze.com",
             enableLogging: true,
-            allowUserSuppliedJavascript: true,
-            minimumIntervalBetweenTriggerActionsInSeconds: 10,
-            sessionTimeoutInSeconds: 60 // 1 min - Only for debug mode
+            allowUserSuppliedJavascript: true, // setting to enable HTML in app messages (essential)
+            minimumIntervalBetweenTriggerActionsInSeconds: 10, //
+            sessionTimeoutInSeconds: 60 // change the session Timeout to 60 sec (dev only)
         });
 
         braze.automaticallyShowInAppMessages();
